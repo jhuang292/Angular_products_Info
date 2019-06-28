@@ -6,10 +6,18 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'products', component: ProductAppComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'products', component: ProductAppComponent,
+    children: [
+      { path: 'detail', component: ProductDetailComponent}
+    ]
+  },
   { path: '**',   component: PageNotFoundComponent }
-
+  // { path: 'products/', component: ProductDetailComponent, 
+  // children: [
+  //   { path: 'detail', component: DepartmentOverviewComponent},
+  //   { path: 'contact', component: DepartmentContactComponent}
+  // ]
+  // }
 ];
 
 @NgModule({

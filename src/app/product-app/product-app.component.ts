@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Product} from '../product';
 import {PRODUCTS} from '../mock-products';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-app',
@@ -19,39 +20,23 @@ export class ProductAppComponent implements OnInit {
     Category: 'Watch'
   };
 
-  products = PRODUCTS;
+  //products = PRODUCTS;
+  products: Product[];
 
-  // public productId;
-  // public selectedId;
-  // productArrary = [
-  //   {Id: 1, Title: "Apple Watch", Price: 100, Rating: 5, Description: "Electronic Device", Category: "Electronic Device"},
-  //   {Id: 2, Title: "Soda", Price: 23, Rating: 4, Description: "Living Product", Category: "Living Product"},
-  //   {Id: 3, Title: "Lemmon", Price: 2, Rating: 5, Description: "Fruit", Category: "Food"}
-  // ]
+  constructor(private productService: ProductService) { 
 
-  constructor() { 
-
-    // this.productArrary = [
-    //   {Id: 1, Title: "Apple Watch", Price: 100, Rating: 5, Description: "Electronic Device", Category: "Electronic Device"},
-    //   {Id: 2, Title: "Soda", Price: 23, Rating: 4, Description: "Living Product", Category: "Living Product"},
-    //   {Id: 3, Title: "Lemmon", Price: 2, Rating: 5, Description: "Fruit", Category: "Food"}
-    // ];
   }
 
   ngOnInit() {
+    this.getProducts();
   }
 
   selectedProduct: Product;
   onSelect(product: Product): void {
     this.selectedProduct = product;
   }
-  // onSelect(p) {
-  //   console.log(p)
-  //   this.router.navigate(['/products', p.Id]);
-  //    //this.router.navigate([department.id], { relativeTo: this.route });
-  // }
-
-  // isSelected(p) { 
-  //   return p.id === this.selectedId; 
-  // }
+ 
+  getProducts(): void {
+    this.products = this.productService.getProducts();
+  }
 }
