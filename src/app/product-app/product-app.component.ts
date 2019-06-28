@@ -37,6 +37,7 @@ export class ProductAppComponent implements OnInit {
   }
  
   getProducts(): void {
+    // synchronous signature
     this.products = this.productService.getProducts();
   }
 }
