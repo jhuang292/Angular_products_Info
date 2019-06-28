@@ -1,0 +1,67 @@
+<!-- <h3>
+    Product List
+  </h3>
+  <ul class="items">
+    <li *ngFor="let p of productArrary"  
+    (click)="onSelect(p)">
+      <span class="badge">{{p.Id}}</span> {{p.Title}}
+    </li>
+</ul> -->
+
+<!-- <table class="table table-bordered">
+    <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Category</th>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of product; let e = even; let o = odd"
+        [ngClass]="{ odd: o, even: e }">
+            <td>{{p.Id}}</td>
+            <td>{{p.Title}}</td>
+            <td>{{p.Price}}</td>
+            <td>{{p.Rating}}</td>
+            <td>{{p.Description}}</td>
+            <td>{{p.Category}}</td>
+          
+        </tr>
+    </tbody>
+</table> -->
+<h2>My Products</h2>
+<table class="table table-bordered">
+    <thead>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>PRICE</th>
+        <th>RATING</th>
+        <th>DESCRIPTION</th>
+        <th>CATEGORY</th>
+    </thead>
+<tbody>
+    <tr *ngFor="let p of products" 
+    [class.selected]="p === selectedProduct">
+        <td (click)="onSelect(p)">{{p.Id}}</td>
+        <td>{{p.Title | titlecase}}</td>
+        <td>{{p.Price | currency : symbol : fractionSize}}</td>
+        <td>{{p.Rating}}</td>
+        <td>{{p.Description}}</td>
+        <td>{{p.Category}}</td>
+    </tr>
+</tbody>
+</table>
+
+<div *ngIf="selectedProduct">
+
+        <h3>{{selectedProduct.Title | uppercase}} Details</h3>
+        <div><label>Id: {{selectedProduct.Id}}</label></div>
+        <div><label>Title: {{selectedProduct.Title | titlecase}}</label></div>
+        <div><label>Price: {{selectedProduct.Price | currency : symbol : fractionSize}}</label></div>
+        <div><label>Rating: {{selectedProduct.Rating}}</label></div>
+        <div><label>Description: {{selectedProduct.Description}}</label></div>
+        <div><label>Category: {{selectedProduct.Category}}</label></div>
+</div>
+
